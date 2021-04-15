@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BlackRed</title>
+</head>
+<body>
+<script>
+    let desk = [];
+    let player1 = [];
+    let player2 = [];
+    let player3 = [];
+    let player4 = [];
+
+    let score1 = 0;
+    let score2 = 0;
+    let score3 = 0;
+    let score = 0;
+
+    function createDesk() { // Tạo bộ bài
+        for (let i = 1; i <= 52; i++) {
+            desk.push(i);
+        }
+    }
+
+    createDesk();
+
+    function shuffleDesk() { //Trộn bài
+        for (let i = 0; i < desk.length; i++) {
+            let rand = Math.floor(Math.random() * desk.length);
+            let temp = desk[i];
+            desk[i] = desk[rand];
+            desk[rand] = temp;
+        }
+    }
+
+    shuffleDesk();
+    let turn = 1;
+
+    function dealCard() {//Chia bài
+        while (desk.length > 0) {
+            if (turn === 1) {
+                player1.push(desk.shift());
+            } else if(turn === 2 ) {
+                player2.push(desk.shift());
+            }else if (turn == 3) {
+                player3.push(desk.shift());
+            }else {
+                player4.push(desk.shift());
+            }
+            turn < 4 ? turn++ : turn = 1;
+        }
+    }
+    dealCard();
+
+    function playGame() {
+        // let players = [player1,player2,player3,player4];
+        for (let i = 0; i < player1.length; i++) {
+            if(player1[i] > player2[i] && player1[i] > player3[i] && player1[i] > player4[i]){
+                score1 ++;
+            }
+        }
+    }
+    playGame();
+
+    function checkWin() {
+        //so sánh score và hiển thị ra thông báo người thắng cuộc
+    }
+    checkWin();
+    console.log(player1);
+    console.log(player2);
+    console.log(player3);
+    console.log(player4);
+
+    // console.log(desk);
+</script>
+</body>
+</html>
+<!--
+    - Tạo bộ bài
+    - Trộn bài
+    - Chia bài cho 2 người chơi
+    - Chơi bài - Ai bài lớn hơn thì cộng điểm
+    - So sánh điểm, ai nhiều điểm hơn thì thắng
+-->
